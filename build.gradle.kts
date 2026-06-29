@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    id("maven-publish")
     id("me.champeau.jmh") version "0.7.3"
 }
 
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(libs.jetbrains.annotations)
+    compileOnlyApi(libs.jetbrains.annotations)
 
     testImplementation(platform(tests.junit.bom))
     testImplementation(tests.junit.jupiter)
@@ -28,4 +29,20 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+java {
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = "net.flamgop.lattice"
+            artifactId = "lattice"
+            version = "0.0.1"
+        }
+    }
 }
