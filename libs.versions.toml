@@ -1,0 +1,6 @@
+[versions]
+jetbrains = "26.1.0"
+
+[libraries]
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains" }
+
