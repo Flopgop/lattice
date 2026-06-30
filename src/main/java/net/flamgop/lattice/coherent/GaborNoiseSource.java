@@ -55,14 +55,14 @@ public final class GaborNoiseSource implements NoiseSource {
         double totalNoise = 0.0;
 
         for (int k = 0; k < impulsesPerCell; k++) {
-            long impulseSeed = seed ^ ((long) k * 73856093L);
+            long impulseSeed = seed ^ (long) k * 73856093L;
             for (int trx = -1; trx <= 1; trx++) {
                 int tx = cellX + trx;
                 double impulseX = tx + MathHelpers.murmurHash3Finalizer(tx, k, impulseSeed);
 
                 double dx = x - impulseX;;
                 totalNoise +=
-                        ((MathHelpers.murmurHash3Finalizer(tx ^ k, 0, impulseSeed) * 2.0) - 1.0)
+                        (MathHelpers.murmurHash3Finalizer(tx ^ k, 0, impulseSeed) * 2.0 - 1.0)
                         * Math.exp(piBandwidthSqr * (dx * dx))
                         * Math.cos(Math.TAU * (dx * dir1X));
             }
@@ -78,7 +78,7 @@ public final class GaborNoiseSource implements NoiseSource {
         double totalNoise = 0.0;
 
         for (int k = 0; k < impulsesPerCell; k++) {
-            long impulseSeed = seed ^ ((long) k * 73856093L);
+            long impulseSeed = seed ^ (long) k * 73856093L;
             for (int tyr = -1; tyr <= 1; tyr++) {
                 int ty = cellY + tyr;
                 for (int trx = -1; trx <= 1; trx++) {
@@ -88,7 +88,7 @@ public final class GaborNoiseSource implements NoiseSource {
 
                     double dx = x - impulseX; double dy = y - impulseY;
                     totalNoise +=
-                            ((MathHelpers.murmurHash3Finalizer(tx ^ k, ty, impulseSeed) * 2.0) - 1.0)
+                            (MathHelpers.murmurHash3Finalizer(tx ^ k, ty, impulseSeed) * 2.0 - 1.0)
                             * Math.exp(piBandwidthSqr * (dx * dx + dy * dy))
                             * Math.cos(Math.TAU * (dx * dir2X + dy * dir2Y));
                 }
@@ -119,7 +119,7 @@ public final class GaborNoiseSource implements NoiseSource {
 
                         double dx = x - impulseX; double dy = y - impulseY; double dz = z - impulseZ;
                         totalNoise +=
-                                ((MathHelpers.murmurHash3Finalizer(tx ^ k, ty ^ tz, impulseSeed) * 2.0) - 1.0)
+                                (MathHelpers.murmurHash3Finalizer(tx ^ k, ty ^ tz, impulseSeed) * 2.0 - 1.0)
                                 * Math.exp(piBandwidthSqr * (dx * dx + dy * dy + dz * dz))
                                 * Math.cos(Math.TAU * (dx * dir3X + dy * dir3Y + dz * dir3Z));
                     }
@@ -139,7 +139,7 @@ public final class GaborNoiseSource implements NoiseSource {
         double totalNoise = 0.0;
 
         for (int k = 0; k < impulsesPerCell; k++) {
-            long impulseSeed = seed ^ ((long) k * 73856093L);
+            long impulseSeed = seed ^ (long) k * 73856093L;
             for (int trw = -1; trw <= 1; trw++) {
                 int tw = cellW + trw;
                 for (int trz = -1; trz <= 1; trz++) {
@@ -155,7 +155,7 @@ public final class GaborNoiseSource implements NoiseSource {
 
                             double dx = x - impulseX; double dy = y - impulseY; double dz = z - impulseZ; double dw = w - impulseW;
                             totalNoise +=
-                                    ((MathHelpers.murmurHash3Finalizer(tx ^ k, ty ^ tz ^ tw, impulseSeed) * 2.0) - 1.0)
+                                    (MathHelpers.murmurHash3Finalizer(tx ^ k, ty ^ tz ^ tw, impulseSeed) * 2.0 - 1.0)
                                     * Math.exp(piBandwidthSqr * (dx * dx + dy * dy + dz * dz + dw * dw))
                                     * Math.cos(Math.TAU * (dx * dir4X + dy * dir4Y + dz * dir4Z + dw * dir4W));
                         }

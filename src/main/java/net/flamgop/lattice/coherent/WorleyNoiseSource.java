@@ -30,7 +30,7 @@ public final class WorleyNoiseSource implements NoiseSource {
         }
 
         double dist = Math.sqrt(min_dist_sq);
-        return (Math.min(dist, 1.0) * 2.0) - 1.0;
+        return Math.min(dist, 1.0) * 2.0 - 1.0;
     }
 
     @Override
@@ -46,14 +46,14 @@ public final class WorleyNoiseSource implements NoiseSource {
 
                 double dx = x - pointX;
                 double dy = y - pointY;
-                double dist_sq = (dx * dx) + (dy * dy);
+                double dist_sq = dx * dx + dy * dy;
 
                 min_dist_sq = Math.min(min_dist_sq, dist_sq);
             }
         }
 
         double dist = Math.sqrt(min_dist_sq);
-        return (Math.min(dist, 1.0) * 2.0) - 1.0;
+        return Math.min(dist, 1.0) * 2.0 - 1.0;
     }
 
     @Override
@@ -73,7 +73,7 @@ public final class WorleyNoiseSource implements NoiseSource {
                     double dx = x - pointX;
                     double dy = y - pointY;
                     double dz = z - pointZ;
-                    double dist_sq = (dx * dx) + (dy * dy) + (dz * dz);
+                    double dist_sq = dx * dx + dy * dy + dz * dz;
 
                     min_dist_sq = Math.min(min_dist_sq, dist_sq);
                 }
@@ -81,7 +81,7 @@ public final class WorleyNoiseSource implements NoiseSource {
         }
 
         double dist = Math.sqrt(min_dist_sq);
-        return (Math.min(dist, 1.0) * 2.0) - 1.0;
+        return Math.min(dist, 1.0) * 2.0 - 1.0;
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class WorleyNoiseSource implements NoiseSource {
                         double dy = y - pointY;
                         double dz = z - pointZ;
                         double dw = w - pointW;
-                        double dist_sq = (dx * dx) + (dy * dy) + (dz * dz) + (dw * dw);
+                        double dist_sq = dx * dx + dy * dy + dz * dz + dw * dw;
 
                         min_dist_sq = Math.min(min_dist_sq, dist_sq);
                     }
@@ -114,6 +114,6 @@ public final class WorleyNoiseSource implements NoiseSource {
         }
 
         double dist = Math.sqrt(min_dist_sq);
-        return (Math.min(dist, 1.0) * 2.0) - 1.0;
+        return Math.min(dist, 1.0) * 2.0 - 1.0;
     }
 }

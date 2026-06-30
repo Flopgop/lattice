@@ -1,6 +1,8 @@
 import net.flamgop.lattice.NoiseSource;
+import net.flamgop.lattice.coherent.GaborNoiseSource;
 import net.flamgop.lattice.coherent.PerlinNoiseSource;
 import net.flamgop.lattice.coherent.ValueNoiseSource;
+import net.flamgop.lattice.coherent.WorleyNoiseSource;
 import net.flamgop.lattice.coherent.simplex.OpenSimplex2;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +24,7 @@ class NoiseBoundsTest {
         testNoiseSourceStaysWithinBounds(new ValueNoiseSource(seed));
         testNoiseSourceStaysWithinBounds(new PerlinNoiseSource(seed));
         testNoiseSourceStaysWithinBounds(new OpenSimplex2.StandardLatticeNoiseSource(seed));
+        testNoiseSourceStaysWithinBounds(new GaborNoiseSource(1337, 1.0, 8, 1.0, 1.0, 1.0, 1.0));
+        testNoiseSourceStaysWithinBounds(new WorleyNoiseSource(1337));
     }
 }
