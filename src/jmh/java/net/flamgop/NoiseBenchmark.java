@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 8)
-@Measurement(iterations = 5)
+@Fork(3)
+@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
 public class NoiseBenchmark {
 
     @State(Scope.Thread)
@@ -35,13 +35,14 @@ public class NoiseBenchmark {
 
     @Setup
     public void setup() {
-        switch (noiseType) {
-            case "VALUE"   -> source = new ValueNoiseSource(1337);
-            case "PERLIN"  -> source = new PerlinNoiseSource(1337);
-            case "SIMPLEX" -> source = new OpenSimplex2.StandardLatticeNoiseSource(1337);
-            case "WORLEY"  -> source = new WorleyNoiseSource(1337);
-            case "GABOR"   -> source = new GaborNoiseSource(1337, 0.785, 1.0, 8);
-        }
+        source = switch (noiseType) {
+            case "VALUE"   -> new ValueNoiseSource(1337);
+            case "PERLIN"  -> new PerlinNoiseSource(1337);
+            case "SIMPLEX" -> new OpenSimplex2.StandardLatticeNoiseSource(1337);
+            case "WORLEY"  -> new WorleyNoiseSource(1337);
+            case "GABOR"   -> new GaborNoiseSource(1337, 1.0, 8, 1.0, 1.0, 1.0, 1.0);
+            default -> throw new IllegalStateException("Unexpected value: " + noiseType);
+        };
     }
 
     @Benchmark

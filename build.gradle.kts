@@ -12,6 +12,7 @@ jmh {
 //    jvmArgs.add("-XX:+PrintAssembly")
 //    jvmArgs.add("-XX:PrintAssemblyOptions=intel")
 //    jvmArgs.add("-XX:CompileCommand=print,net/flamgop/NoiseBenchmark.testSampling")
+    jvmArgs.add("-p noiseType=GABOR")
 }
 
 repositories {

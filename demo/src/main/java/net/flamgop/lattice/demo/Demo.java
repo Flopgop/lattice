@@ -18,7 +18,7 @@ public class Demo {
         NoiseSource perlin = new PerlinNoiseSource(1337);
         NoiseSource simplex = new OpenSimplex2.StandardLatticeNoiseSource(1337);
         NoiseSource worley = new WorleyNoiseSource(1337);
-        NoiseSource gabor = new GaborNoiseSource(1337, 0.785, 1.0, 8);
+        NoiseSource gabor = new GaborNoiseSource(1337, 1.0, 8, 1.0, 1.0, 1.0, 1.0);
 
         NoiseSource complex = new OpenSimplex2.StandardLatticeNoiseSource(1337)
                 .warp(perlin

@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 8)
-@Measurement(iterations = 5)
+@Fork(3)
+@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
 public class BaselineBenchmark {
     @State(Scope.Thread)
     public static class SequenceState {
